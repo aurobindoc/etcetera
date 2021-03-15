@@ -1,0 +1,1456 @@
+
+
+
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      <meta http-equiv="x-ua-compatible" content="ie=edge">
+      
+        <meta name="description" content="Dev and Client level Documentation for Nightswatch System">
+      
+      
+        <link rel="canonical" href="https://github.fkinternal.com/Flipkart/nightswatch/runbooks/sidelineRunbook/">
+      
+      
+        <meta name="author" content="Aurobindo Mondal">
+      
+      
+        <meta name="lang:clipboard.copy" content="Copy to clipboard">
+      
+        <meta name="lang:clipboard.copied" content="Copied to clipboard">
+      
+        <meta name="lang:search.language" content="en">
+      
+        <meta name="lang:search.pipeline.stopwords" content="True">
+      
+        <meta name="lang:search.pipeline.trimmer" content="True">
+      
+        <meta name="lang:search.result.none" content="No matching documents">
+      
+        <meta name="lang:search.result.one" content="1 matching document">
+      
+        <meta name="lang:search.result.other" content="# matching documents">
+      
+        <meta name="lang:search.tokenizer" content="[\s\-]+">
+      
+      <link rel="shortcut icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.0.4, mkdocs-material-4.0.2">
+    
+    
+      
+        <title>Sideline Runbook - Nightswatch Docs</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/application.982221ab.css">
+      
+        <link rel="stylesheet" href="../../assets/stylesheets/application-palette.224b79ff.css">
+      
+      
+        
+        
+        <meta name="theme-color" content="#3f51b5">
+      
+    
+    
+      <script src="../../assets/javascripts/modernizr.1f0bcf2b.js"></script>
+    
+    
+      
+        <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700|Roboto+Mono">
+        <style>body,input{font-family:"Roboto","Helvetica Neue",Helvetica,Arial,sans-serif}code,kbd,pre{font-family:"Roboto Mono","Courier New",Courier,monospace}</style>
+      
+    
+    <link rel="stylesheet" href="../../assets/fonts/material-icons.css">
+    
+      <link rel="manifest" href="../../manifest.webmanifest">
+    
+    
+    
+      
+    
+    
+  </head>
+  
+    
+    
+    <body dir="ltr" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    <svg class="md-svg">
+      <defs>
+        
+        
+          <svg xmlns="http://www.w3.org/2000/svg" width="416" height="448"
+    viewBox="0 0 416 448" id="__github">
+  <path fill="currentColor" d="M160 304q0 10-3.125 20.5t-10.75 19-18.125
+        8.5-18.125-8.5-10.75-19-3.125-20.5 3.125-20.5 10.75-19 18.125-8.5
+        18.125 8.5 10.75 19 3.125 20.5zM320 304q0 10-3.125 20.5t-10.75
+        19-18.125 8.5-18.125-8.5-10.75-19-3.125-20.5 3.125-20.5 10.75-19
+        18.125-8.5 18.125 8.5 10.75 19 3.125 20.5zM360
+        304q0-30-17.25-51t-46.75-21q-10.25 0-48.75 5.25-17.75 2.75-39.25
+        2.75t-39.25-2.75q-38-5.25-48.75-5.25-29.5 0-46.75 21t-17.25 51q0 22 8
+        38.375t20.25 25.75 30.5 15 35 7.375 37.25 1.75h42q20.5 0
+        37.25-1.75t35-7.375 30.5-15 20.25-25.75 8-38.375zM416 260q0 51.75-15.25
+        82.75-9.5 19.25-26.375 33.25t-35.25 21.5-42.5 11.875-42.875 5.5-41.75
+        1.125q-19.5 0-35.5-0.75t-36.875-3.125-38.125-7.5-34.25-12.875-30.25-20.25-21.5-28.75q-15.5-30.75-15.5-82.75
+        0-59.25 34-99-6.75-20.5-6.75-42.5 0-29 12.75-54.5 27 0 47.5 9.875t47.25
+        30.875q36.75-8.75 77.25-8.75 37 0 70 8 26.25-20.5
+        46.75-30.25t47.25-9.75q12.75 25.5 12.75 54.5 0 21.75-6.75 42 34 40 34
+        99.5z" />
+</svg>
+        
+      </defs>
+    </svg>
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" data-md-component="overlay" for="__drawer"></label>
+    
+      <a href="#sideline-hystrix-latency-90-percentile" tabindex="1" class="md-skip">
+        Skip to content
+      </a>
+    
+    
+      <header class="md-header" data-md-component="header">
+  <nav class="md-header-nav md-grid">
+    <div class="md-flex">
+      <div class="md-flex__cell md-flex__cell--shrink">
+        <a href="https://github.fkinternal.com/Flipkart/nightswatch" title="Nightswatch Docs" class="md-header-nav__button md-logo">
+          
+            <i class="md-icon">stars</i>
+          
+        </a>
+      </div>
+      <div class="md-flex__cell md-flex__cell--shrink">
+        <label class="md-icon md-icon--menu md-header-nav__button" for="__drawer"></label>
+      </div>
+      <div class="md-flex__cell md-flex__cell--stretch">
+        <div class="md-flex__ellipsis md-header-nav__title" data-md-component="title">
+          
+            <span class="md-header-nav__topic">
+              Nightswatch Docs
+            </span>
+            <span class="md-header-nav__topic">
+              Sideline Runbook
+            </span>
+          
+        </div>
+      </div>
+      <div class="md-flex__cell md-flex__cell--shrink">
+        
+          <label class="md-icon md-icon--search md-header-nav__button" for="__search"></label>
+          
+<div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="query" data-md-state="active">
+      <label class="md-icon md-search__icon" for="__search"></label>
+      <button type="reset" class="md-icon md-search__icon" data-md-component="reset" tabindex="-1">
+        &#xE5CD;
+      </button>
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="result">
+          <div class="md-search-result__meta">
+            Type to start searching
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+        
+      </div>
+      
+        <div class="md-flex__cell md-flex__cell--shrink">
+          <div class="md-header-nav__source">
+            
+
+
+  
+
+<a href="https://github.fkinternal.com/Flipkart/nightswatch" title="Go to repository" class="md-source" data-md-source="github">
+  
+    <div class="md-source__icon">
+      <svg viewBox="0 0 24 24" width="24" height="24">
+        <use xlink:href="#__github" width="24" height="24"></use>
+      </svg>
+    </div>
+  
+  <div class="md-source__repository">
+    nightswatch
+  </div>
+</a>
+          </div>
+        </div>
+      
+    </div>
+  </nav>
+</header>
+    
+    <div class="md-container">
+      
+        
+      
+      
+      <main class="md-main">
+        <div class="md-main__inner md-grid" data-md-component="container">
+          
+            
+              <div class="md-sidebar md-sidebar--primary" data-md-component="navigation">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    <nav class="md-nav md-nav--primary" data-md-level="0">
+  <label class="md-nav__title md-nav__title--site" for="__drawer">
+    <a href="https://github.fkinternal.com/Flipkart/nightswatch" title="Nightswatch Docs" class="md-nav__button md-logo">
+      
+        <i class="md-icon">stars</i>
+      
+    </a>
+    Nightswatch Docs
+  </label>
+  
+    <div class="md-nav__source">
+      
+
+
+  
+
+<a href="https://github.fkinternal.com/Flipkart/nightswatch" title="Go to repository" class="md-source" data-md-source="github">
+  
+    <div class="md-source__icon">
+      <svg viewBox="0 0 24 24" width="24" height="24">
+        <use xlink:href="#__github" width="24" height="24"></use>
+      </svg>
+    </div>
+  
+  <div class="md-source__repository">
+    nightswatch
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../../introduction/" title="Introduction" class="md-nav__link">
+      Introduction
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../../architecture/" title="Architecture" class="md-nav__link">
+      Architecture
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-3" type="checkbox" id="nav-3">
+    
+    <label class="md-nav__link" for="nav-3">
+      Onboarding
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-3">
+        Onboarding
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../onboarding/clientJarSeparation/" title="Client Jar Separation" class="md-nav__link">
+      Client Jar Separation
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../onboarding/handler/" title="Client API Details" class="md-nav__link">
+      Client API Details
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../onboarding/nightswatchRestIngestion/" title="Nightswatch Rest Ingestion" class="md-nav__link">
+      Nightswatch Rest Ingestion
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../onboarding/configsToBeProvided/" title="Configs to be provided" class="md-nav__link">
+      Configs to be provided
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../onboarding/alertAndMonitoring/" title="Alerts and Monitoring" class="md-nav__link">
+      Alerts and Monitoring
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../../controllingTopology/" title="Controlling the Topology" class="md-nav__link">
+      Controlling the Topology
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../../kafkaOffsetManager/" title="Kafka Offset Manager" class="md-nav__link">
+      Kafka Offset Manager
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../../alerts/" title="Alerts" class="md-nav__link">
+      Alerts
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../../nightswatchLocal/" title="Setup on Local" class="md-nav__link">
+      Setup on Local
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../../debugging/" title="Debugging" class="md-nav__link">
+      Debugging
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../../dashboards/" title="Dashboards" class="md-nav__link">
+      Dashboards
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../../api/" title="API" class="md-nav__link">
+      API
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-11" type="checkbox" id="nav-11">
+    
+    <label class="md-nav__link" for="nav-11">
+      Dev Support
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-11">
+        Dev Support
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../dev-support/noah/noahSetup/" title="Noah Zookeeper Setup" class="md-nav__link">
+      Noah Zookeeper Setup
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-11-2" type="checkbox" id="nav-11-2">
+    
+    <label class="md-nav__link" for="nav-11-2">
+      Cluster Setup
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="2">
+      <label class="md-nav__title" for="nav-11-2">
+        Cluster Setup
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../dev-support/setup/yakSetup/" title="Yak Setup" class="md-nav__link">
+      Yak Setup
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../dev-support/setup/zookeeperSetup/" title="Zookeeper Setup" class="md-nav__link">
+      Zookeeper Setup
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../dev-support/setup/kafkaSetup/" title="Kafka Setup" class="md-nav__link">
+      Kafka Setup
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../dev-support/setup/kafkaLagMonitorSetup/" title="Kafka Lag Monitor Setup" class="md-nav__link">
+      Kafka Lag Monitor Setup
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-11-3" type="checkbox" id="nav-11-3">
+    
+    <label class="md-nav__link" for="nav-11-3">
+      Config Buckets
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="2">
+      <label class="md-nav__title" for="nav-11-3">
+        Config Buckets
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../configBucketsChennai/" title="Chennai" class="md-nav__link">
+      Chennai
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../configBucketsHyderabad/" title="Hyderabad" class="md-nav__link">
+      Hyderabad
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../deployment/" title="Deployment" class="md-nav__link">
+      Deployment
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../migration/" title="Storm Migration and RollBack" class="md-nav__link">
+      Storm Migration and RollBack
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-12" type="checkbox" id="nav-12" checked>
+    
+    <label class="md-nav__link" for="nav-12">
+      Runbooks
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-12">
+        Runbooks
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../stormRunbook/" title="Storm Runbooks" class="md-nav__link">
+      Storm Runbooks
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../nightswatchRestRunbook/" title="Nightswatch Rest Runbooks" class="md-nav__link">
+      Nightswatch Rest Runbooks
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../nightswatchDashboardRunbook/" title="Nightswatch Dashboard Runbooks" class="md-nav__link">
+      Nightswatch Dashboard Runbooks
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../yakDNRunbook/" title="Yak Data Node RunBook" class="md-nav__link">
+      Yak Data Node RunBook
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../zookeeperRunbook/" title="Zookeeper Runbooks" class="md-nav__link">
+      Zookeeper Runbooks
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../hystrixMonitorRunbook/" title="Hystrix Monitor Runbooks" class="md-nav__link">
+      Hystrix Monitor Runbooks
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../kafkaLagMonitorRunbook/" title="Kafka Lag Monitor Runbooks" class="md-nav__link">
+      Kafka Lag Monitor Runbooks
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../kafkaLagRunbook/" title="Kafka Lag Runbooks" class="md-nav__link">
+      Kafka Lag Runbooks
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../schedulerRunbook/" title="Scheduler Runbooks" class="md-nav__link">
+      Scheduler Runbooks
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../yakRunbook/" title="Yak Runbooks" class="md-nav__link">
+      Yak Runbooks
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active">
+    
+    <input class="md-toggle md-nav__toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+    
+    
+      <label class="md-nav__link md-nav__link--active" for="__toc">
+        Sideline Runbook
+      </label>
+    
+    <a href="./" title="Sideline Runbook" class="md-nav__link md-nav__link--active">
+      Sideline Runbook
+    </a>
+    
+      
+<nav class="md-nav md-nav--secondary">
+  
+  
+  
+    <label class="md-nav__title" for="__toc">Table of contents</label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#sideline-hystrix-latency-90-percentile" title="Sideline Hystrix Latency 90 Percentile" class="md-nav__link">
+    Sideline Hystrix Latency 90 Percentile
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#description" title="Description" class="md-nav__link">
+    Description
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#detection" title="Detection" class="md-nav__link">
+    Detection
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#possible-reasoning-for-such-a-behaviour" title="Possible Reasoning for such a Behaviour" class="md-nav__link">
+    Possible Reasoning for such a Behaviour
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#debugging" title="Debugging" class="md-nav__link">
+    Debugging
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#impact" title="Impact" class="md-nav__link">
+    Impact
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#recovery" title="Recovery" class="md-nav__link">
+    Recovery
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#sideline-hystrix-error-percentage" title="Sideline Hystrix Error Percentage" class="md-nav__link">
+    Sideline Hystrix Error Percentage
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#description_1" title="Description" class="md-nav__link">
+    Description
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#detection_1" title="Detection" class="md-nav__link">
+    Detection
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#possible-reasoning-for-such-a-behaviour_1" title="Possible Reasoning for such a Behaviour" class="md-nav__link">
+    Possible Reasoning for such a Behaviour
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#debugging_1" title="Debugging" class="md-nav__link">
+    Debugging
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#impact_1" title="Impact" class="md-nav__link">
+    Impact
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#recovery_1" title="Recovery" class="md-nav__link">
+    Recovery
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+      
+      
+      
+      
+    </ul>
+  
+</nav>
+    
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../boltsRunbook/" title="Bolts Runbook" class="md-nav__link">
+      Bolts Runbook
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../externalServiceCallRunbook/" title="External Service Call Runbooks" class="md-nav__link">
+      External Service Call Runbooks
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../sidelineGrowthRunbook/" title="Sideline Growth Runbooks" class="md-nav__link">
+      Sideline Growth Runbooks
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-13" type="checkbox" id="nav-13">
+    
+    <label class="md-nav__link" for="nav-13">
+      Maintainence
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-13">
+        Maintainence
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../maintenance/stormMaintenance/" title="Storm" class="md-nav__link">
+      Storm
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../maintenance/nwRestMaintenance/" title="Nightswatch Rest" class="md-nav__link">
+      Nightswatch Rest
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../maintenance/nwDashboardMaintenance/" title="Nightswatch Dashboard" class="md-nav__link">
+      Nightswatch Dashboard
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../maintenance/yakMaintenance/" title="Yak" class="md-nav__link">
+      Yak
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../maintenance/zookeeperMaintenance/" title="Zookeeper" class="md-nav__link">
+      Zookeeper
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-14" type="checkbox" id="nav-14">
+    
+    <label class="md-nav__link" for="nav-14">
+      FAQ
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-14">
+        FAQ
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../faq/basicFaq/" title="Basic FAQ" class="md-nav__link">
+      Basic FAQ
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../faq/stormFaq/" title="Storm FAQ" class="md-nav__link">
+      Storm FAQ
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../faq/nightswatchFaq/" title="Nightswatch FAQ" class="md-nav__link">
+      Nightswatch FAQ
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../../releaseNotes/" title="Release Notes" class="md-nav__link">
+      Release Notes
+    </a>
+  </li>
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="toc">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+<nav class="md-nav md-nav--secondary">
+  
+  
+  
+    <label class="md-nav__title" for="__toc">Table of contents</label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#sideline-hystrix-latency-90-percentile" title="Sideline Hystrix Latency 90 Percentile" class="md-nav__link">
+    Sideline Hystrix Latency 90 Percentile
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#description" title="Description" class="md-nav__link">
+    Description
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#detection" title="Detection" class="md-nav__link">
+    Detection
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#possible-reasoning-for-such-a-behaviour" title="Possible Reasoning for such a Behaviour" class="md-nav__link">
+    Possible Reasoning for such a Behaviour
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#debugging" title="Debugging" class="md-nav__link">
+    Debugging
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#impact" title="Impact" class="md-nav__link">
+    Impact
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#recovery" title="Recovery" class="md-nav__link">
+    Recovery
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#sideline-hystrix-error-percentage" title="Sideline Hystrix Error Percentage" class="md-nav__link">
+    Sideline Hystrix Error Percentage
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#description_1" title="Description" class="md-nav__link">
+    Description
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#detection_1" title="Detection" class="md-nav__link">
+    Detection
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#possible-reasoning-for-such-a-behaviour_1" title="Possible Reasoning for such a Behaviour" class="md-nav__link">
+    Possible Reasoning for such a Behaviour
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#debugging_1" title="Debugging" class="md-nav__link">
+    Debugging
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#impact_1" title="Impact" class="md-nav__link">
+    Impact
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#recovery_1" title="Recovery" class="md-nav__link">
+    Recovery
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+      
+      
+      
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content">
+            <article class="md-content__inner md-typeset">
+              
+                
+                
+                  <h1>Sideline Runbook</h1>
+                
+                <h2 id="sideline-hystrix-latency-90-percentile">Sideline Hystrix Latency 90 Percentile<a class="headerlink" href="#sideline-hystrix-latency-90-percentile" title="Permanent link">&para;</a></h2>
+<h3 id="description">Description<a class="headerlink" href="#description" title="Permanent link">&para;</a></h3>
+<p>Nightswatch uses Yak as Sideline Database. Thus, it connects to yak using Yak client which connects to yak using rest. 
+High latent yak calls can lead to degrading the performance of the system. So, we should be closely monitoring the Yak Calls</p>
+<h3 id="detection">Detection<a class="headerlink" href="#detection" title="Permanent link">&para;</a></h3>
+<ul>
+<li>
+<p><strong>Alerts</strong> : Alerts are setup for each topology</p>
+<ul>
+<li><code>Nightswatch_(toplogy-name)_sideline_hystrix_latencyExecute_percentile_90</code></li>
+<li>For more details about the alert check <a href="../../alerts/#formula-used-for-alerting-on-hystrix-metrics">Formula Used for Alerting on Hystrix Metrics</a></li>
+</ul>
+</li>
+<li>
+<p><strong>Dashboard</strong> : Refer to Nightswatch Topology level Dashboard to see the Metric behaviour. Refer <a href="../../dashboards/">Dashboards Page</a></p>
+<ul>
+<li><strong>Dashboard Panel:</strong> Sideline Dashboard (90 Percentile Latency)</li>
+<li><strong>Chennai:</strong> http://10.47.102.190/dashboard/(topology-name)/Cosmos</li>
+<li><strong>Hyderabad:</strong> http://10.24.7.187/dashboard/(topology-name)/Cosmos</li>
+</ul>
+</li>
+</ul>
+<h3 id="possible-reasoning-for-such-a-behaviour">Possible Reasoning for such a Behaviour<a class="headerlink" href="#possible-reasoning-for-such-a-behaviour" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>Latent Yak</strong>: Yak is latent. This means there is some issue at Yak. </li>
+</ul>
+<h3 id="debugging">Debugging<a class="headerlink" href="#debugging" title="Permanent link">&para;</a></h3>
+<ul>
+<li>
+<p><strong>Step 1:</strong> Check Yak Dashboard </p>
+<ul>
+<li><strong>Chennai:</strong> <a href="http://10.47.4.24/dashboard/script/yak.js?prefix=prod-nightswatch-yak&amp;rsgroup=yak-prod_id_nightswatch&amp;refresh=30s&amp;orgId=1&amp;from=now-15m&amp;to=now">http://10.47.4.24/dashboard/script/yak.js?prefix=prod-nightswatch-yak&amp;rsgroup=yak-prod_id_nightswatch&amp;refresh=30s&amp;orgId=1&amp;from=now-15m&amp;to=now</a>  </li>
+<li><strong>Hyderabad:</strong> <a href="http://10.24.0.243/dashboard/script/yak.js?prefix=prod-nightswatch-yak&amp;rsgroup=yak-prod_id_nightswatch&amp;refresh=30s&amp;orgId=1&amp;from=now-15m&amp;to=now">http://10.24.0.243/dashboard/script/yak.js?prefix=prod-nightswatch-yak&amp;rsgroup=yak-prod_id_nightswatch&amp;refresh=30s&amp;orgId=1&amp;from=now-15m&amp;to=now</a></li>
+<li><strong>Dashboard Panel of interest:</strong> <ul>
+<li>Latency (99th percentile)</li>
+<li>IPC Call time (99th percentile) </li>
+</ul>
+</li>
+<li>Inform id-dev@ if there is latency issue in Yak</li>
+</ul>
+</li>
+<li>
+<p><strong>Step 2:</strong> Check logs in worker boxes</p>
+<ul>
+<li><a href="../../faq/basicFaq/#where-can-i-find-my-topology-logs">Where can I find the topology logs?</a></li>
+<li><a href="../../faq/basicFaq/##how-does-the-worker-logs-look-like">How does the topology log look like?</a></li>
+<li>Check logs to find out the necessary reason of the issue</li>
+</ul>
+</li>
+</ul>
+<h3 id="impact">Impact<a class="headerlink" href="#impact" title="Permanent link">&para;</a></h3>
+<p>Latent Yak calls can lead to timeouts which would result in bolt failures. If bolts are failing continuously, it could lead to a pile up at the source Kafka.
+This would result in Client Kafka Offset Lag. Clients would be impacted if Lags keep on increasing and so, it should be resolved at priority </p>
+<h3 id="recovery">Recovery<a class="headerlink" href="#recovery" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Use the Debugging steps mentioned above to isolate the issue.</li>
+<li>Inform id-dev@ if any issue at scheduler side</li>
+</ul>
+<h2 id="sideline-hystrix-error-percentage">Sideline Hystrix Error Percentage<a class="headerlink" href="#sideline-hystrix-error-percentage" title="Permanent link">&para;</a></h2>
+<h3 id="description_1">Description<a class="headerlink" href="#description_1" title="Permanent link">&para;</a></h3>
+<p>Nightswatch uses Yak as Sideline Database. Thus, it connects to yak using Yak client which connects to yak using rest. 
+Yak Failures can lead to degrading the performance of the system. So, we should be closely monitoring the Yak Calls</p>
+<h3 id="detection_1">Detection<a class="headerlink" href="#detection_1" title="Permanent link">&para;</a></h3>
+<ul>
+<li>
+<p><strong>Alerts</strong> : Alerts are setup for each topology</p>
+<ul>
+<li><code>Nightswatch_(toplogy-name)_sideline_hystrix_errorPercentage</code></li>
+<li>For more details about the alert check <a href="../../alerts/#formula-used-for-alerting-on-hystrix-metrics">Formula Used for Alerting on Hystrix Metrics</a></li>
+</ul>
+</li>
+<li>
+<p><strong>Dashboard</strong> : Refer to Nightswatch Topology level Dashboard to see the Metric behaviour. Refer <a href="../../dashboards/">Dashboards Page</a></p>
+<ul>
+<li><strong>Dashboard Panel:</strong> Sideline Dashboard (Error Percentage)</li>
+<li><strong>Chennai:</strong> http://10.47.102.190/dashboard/(topology-name)/Cosmos</li>
+<li><strong>Hyderabad:</strong> http://10.24.7.187/dashboard/(topology-name)/Cosmos</li>
+</ul>
+</li>
+</ul>
+<h3 id="possible-reasoning-for-such-a-behaviour_1">Possible Reasoning for such a Behaviour<a class="headerlink" href="#possible-reasoning-for-such-a-behaviour_1" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>Unknown Host</strong>: New Data Nodes been added but not got reflected in /etc/hosts of all supervisor boxes</li>
+<li><strong>Latent Yak</strong>: Yak is latent. This means there is some issue at Yak. </li>
+<li><strong>Yak is Down</strong>: Yak is down. This means there is all calls to Yak will fail. </li>
+</ul>
+<h3 id="debugging_1">Debugging<a class="headerlink" href="#debugging_1" title="Permanent link">&para;</a></h3>
+<ul>
+<li>
+<p><strong>Step 1:</strong> Check Yak Dashboard </p>
+<ul>
+<li><strong>Chennai:</strong> <a href="http://10.47.4.24/dashboard/script/yak.js?prefix=prod-nightswatch-yak&amp;rsgroup=yak-prod_id_nightswatch&amp;refresh=30s&amp;orgId=1&amp;from=now-15m&amp;to=now">http://10.47.4.24/dashboard/script/yak.js?prefix=prod-nightswatch-yak&amp;rsgroup=yak-prod_id_nightswatch&amp;refresh=30s&amp;orgId=1&amp;from=now-15m&amp;to=now</a>  </li>
+<li><strong>Hyderabad:</strong> <a href="http://10.24.0.243/dashboard/script/yak.js?prefix=prod-nightswatch-yak&amp;rsgroup=yak-prod_id_nightswatch&amp;refresh=30s&amp;orgId=1&amp;from=now-15m&amp;to=now">http://10.24.0.243/dashboard/script/yak.js?prefix=prod-nightswatch-yak&amp;rsgroup=yak-prod_id_nightswatch&amp;refresh=30s&amp;orgId=1&amp;from=now-15m&amp;to=now</a></li>
+<li><strong>Dashboard Panel of interest:</strong> <ul>
+<li>Write - TPT, Read TPT</li>
+<li>Exception Count </li>
+</ul>
+</li>
+<li>Inform id-dev@ if there is latency issue in Yak</li>
+</ul>
+</li>
+<li>
+<p><strong>Step 2:</strong> Check logs in worker boxes</p>
+<ul>
+<li><a href="../../faq/basicFaq/#where-can-i-find-my-topology-logs">Where can I find the topology logs?</a></li>
+<li><a href="../../faq/basicFaq/##how-does-the-worker-logs-look-like">How does the topology log look like?</a></li>
+<li>Check logs to find out the necessary reason of the issue</li>
+</ul>
+</li>
+</ul>
+<h3 id="impact_1">Impact<a class="headerlink" href="#impact_1" title="Permanent link">&para;</a></h3>
+<p>Yak Failures would result in bolt failures. If bolts are failing continuously, it could lead to a pile up at the source Kafka.
+This would result in Client Kafka Offset Lag. Clients would be impacted if Lags keep on increasing and so, it should be resolved at priority </p>
+<h3 id="recovery_1">Recovery<a class="headerlink" href="#recovery_1" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Use the Debugging steps mentioned above to isolate the issue.</li>
+<li>Inform id-dev@ if any issue at scheduler side</li>
+</ul>
+                
+                  
+                
+              
+              
+                
+
+
+              
+            </article>
+          </div>
+        </div>
+      </main>
+      
+        
+<footer class="md-footer">
+  
+    <div class="md-footer-nav">
+      <nav class="md-footer-nav__inner md-grid">
+        
+          <a href="../yakRunbook/" title="Yak Runbooks" class="md-flex md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+            <div class="md-flex__cell md-flex__cell--shrink">
+              <i class="md-icon md-icon--arrow-back md-footer-nav__button"></i>
+            </div>
+            <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
+              <span class="md-flex__ellipsis">
+                <span class="md-footer-nav__direction">
+                  Previous
+                </span>
+                Yak Runbooks
+              </span>
+            </div>
+          </a>
+        
+        
+          <a href="../boltsRunbook/" title="Bolts Runbook" class="md-flex md-footer-nav__link md-footer-nav__link--next" rel="next">
+            <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
+              <span class="md-flex__ellipsis">
+                <span class="md-footer-nav__direction">
+                  Next
+                </span>
+                Bolts Runbook
+              </span>
+            </div>
+            <div class="md-flex__cell md-flex__cell--shrink">
+              <i class="md-icon md-icon--arrow-forward md-footer-nav__button"></i>
+            </div>
+          </a>
+        
+      </nav>
+    </div>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-footer-copyright">
+        
+          <div class="md-footer-copyright__highlight">
+            Copyright &copy; 2020 Nightswatch
+          </div>
+        
+        powered by
+        <a href="https://www.mkdocs.org">MkDocs</a>
+        and
+        <a href="https://squidfunk.github.io/mkdocs-material/">
+          Material for MkDocs</a>
+      </div>
+      
+  <div class="md-footer-social">
+    <link rel="stylesheet" href="../../assets/fonts/font-awesome.css">
+    
+      <a href="https://github.fkinternal.com/Flipkart/nightswatch" class="md-footer-social__link fa fa-github"></a>
+    
+      <a href="https://twitter.com/Flipkart" class="md-footer-social__link fa fa-twitter"></a>
+    
+      <a href="https://www.linkedin.com/company/flipkart/" class="md-footer-social__link fa fa-linkedin"></a>
+    
+  </div>
+
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    
+      <script src="../../assets/javascripts/application.d9aa80ab.js"></script>
+      
+      <script>app.initialize({version:"1.0.4",url:{base:"../.."}})</script>
+      
+    
+  </body>
+</html>

@@ -1,0 +1,1476 @@
+
+
+
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      <meta http-equiv="x-ua-compatible" content="ie=edge">
+      
+        <meta name="description" content="Dev and Client level Documentation for Nightswatch System">
+      
+      
+        <link rel="canonical" href="https://github.fkinternal.com/Flipkart/nightswatch/kafkaOffsetManager/">
+      
+      
+        <meta name="author" content="Aurobindo Mondal">
+      
+      
+        <meta name="lang:clipboard.copy" content="Copy to clipboard">
+      
+        <meta name="lang:clipboard.copied" content="Copied to clipboard">
+      
+        <meta name="lang:search.language" content="en">
+      
+        <meta name="lang:search.pipeline.stopwords" content="True">
+      
+        <meta name="lang:search.pipeline.trimmer" content="True">
+      
+        <meta name="lang:search.result.none" content="No matching documents">
+      
+        <meta name="lang:search.result.one" content="1 matching document">
+      
+        <meta name="lang:search.result.other" content="# matching documents">
+      
+        <meta name="lang:search.tokenizer" content="[\s\-]+">
+      
+      <link rel="shortcut icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.0.4, mkdocs-material-4.0.2">
+    
+    
+      
+        <title>Kafka Offset Manager - Nightswatch Docs</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/application.982221ab.css">
+      
+        <link rel="stylesheet" href="../assets/stylesheets/application-palette.224b79ff.css">
+      
+      
+        
+        
+        <meta name="theme-color" content="#3f51b5">
+      
+    
+    
+      <script src="../assets/javascripts/modernizr.1f0bcf2b.js"></script>
+    
+    
+      
+        <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700|Roboto+Mono">
+        <style>body,input{font-family:"Roboto","Helvetica Neue",Helvetica,Arial,sans-serif}code,kbd,pre{font-family:"Roboto Mono","Courier New",Courier,monospace}</style>
+      
+    
+    <link rel="stylesheet" href="../assets/fonts/material-icons.css">
+    
+      <link rel="manifest" href="../manifest.webmanifest">
+    
+    
+    
+      
+    
+    
+  </head>
+  
+    
+    
+    <body dir="ltr" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    <svg class="md-svg">
+      <defs>
+        
+        
+          <svg xmlns="http://www.w3.org/2000/svg" width="416" height="448"
+    viewBox="0 0 416 448" id="__github">
+  <path fill="currentColor" d="M160 304q0 10-3.125 20.5t-10.75 19-18.125
+        8.5-18.125-8.5-10.75-19-3.125-20.5 3.125-20.5 10.75-19 18.125-8.5
+        18.125 8.5 10.75 19 3.125 20.5zM320 304q0 10-3.125 20.5t-10.75
+        19-18.125 8.5-18.125-8.5-10.75-19-3.125-20.5 3.125-20.5 10.75-19
+        18.125-8.5 18.125 8.5 10.75 19 3.125 20.5zM360
+        304q0-30-17.25-51t-46.75-21q-10.25 0-48.75 5.25-17.75 2.75-39.25
+        2.75t-39.25-2.75q-38-5.25-48.75-5.25-29.5 0-46.75 21t-17.25 51q0 22 8
+        38.375t20.25 25.75 30.5 15 35 7.375 37.25 1.75h42q20.5 0
+        37.25-1.75t35-7.375 30.5-15 20.25-25.75 8-38.375zM416 260q0 51.75-15.25
+        82.75-9.5 19.25-26.375 33.25t-35.25 21.5-42.5 11.875-42.875 5.5-41.75
+        1.125q-19.5 0-35.5-0.75t-36.875-3.125-38.125-7.5-34.25-12.875-30.25-20.25-21.5-28.75q-15.5-30.75-15.5-82.75
+        0-59.25 34-99-6.75-20.5-6.75-42.5 0-29 12.75-54.5 27 0 47.5 9.875t47.25
+        30.875q36.75-8.75 77.25-8.75 37 0 70 8 26.25-20.5
+        46.75-30.25t47.25-9.75q12.75 25.5 12.75 54.5 0 21.75-6.75 42 34 40 34
+        99.5z" />
+</svg>
+        
+      </defs>
+    </svg>
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" data-md-component="overlay" for="__drawer"></label>
+    
+      <a href="#app-box-details" tabindex="1" class="md-skip">
+        Skip to content
+      </a>
+    
+    
+      <header class="md-header" data-md-component="header">
+  <nav class="md-header-nav md-grid">
+    <div class="md-flex">
+      <div class="md-flex__cell md-flex__cell--shrink">
+        <a href="https://github.fkinternal.com/Flipkart/nightswatch" title="Nightswatch Docs" class="md-header-nav__button md-logo">
+          
+            <i class="md-icon">stars</i>
+          
+        </a>
+      </div>
+      <div class="md-flex__cell md-flex__cell--shrink">
+        <label class="md-icon md-icon--menu md-header-nav__button" for="__drawer"></label>
+      </div>
+      <div class="md-flex__cell md-flex__cell--stretch">
+        <div class="md-flex__ellipsis md-header-nav__title" data-md-component="title">
+          
+            <span class="md-header-nav__topic">
+              Nightswatch Docs
+            </span>
+            <span class="md-header-nav__topic">
+              Kafka Offset Manager
+            </span>
+          
+        </div>
+      </div>
+      <div class="md-flex__cell md-flex__cell--shrink">
+        
+          <label class="md-icon md-icon--search md-header-nav__button" for="__search"></label>
+          
+<div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="query" data-md-state="active">
+      <label class="md-icon md-search__icon" for="__search"></label>
+      <button type="reset" class="md-icon md-search__icon" data-md-component="reset" tabindex="-1">
+        &#xE5CD;
+      </button>
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="result">
+          <div class="md-search-result__meta">
+            Type to start searching
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+        
+      </div>
+      
+        <div class="md-flex__cell md-flex__cell--shrink">
+          <div class="md-header-nav__source">
+            
+
+
+  
+
+<a href="https://github.fkinternal.com/Flipkart/nightswatch" title="Go to repository" class="md-source" data-md-source="github">
+  
+    <div class="md-source__icon">
+      <svg viewBox="0 0 24 24" width="24" height="24">
+        <use xlink:href="#__github" width="24" height="24"></use>
+      </svg>
+    </div>
+  
+  <div class="md-source__repository">
+    nightswatch
+  </div>
+</a>
+          </div>
+        </div>
+      
+    </div>
+  </nav>
+</header>
+    
+    <div class="md-container">
+      
+        
+      
+      
+      <main class="md-main">
+        <div class="md-main__inner md-grid" data-md-component="container">
+          
+            
+              <div class="md-sidebar md-sidebar--primary" data-md-component="navigation">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    <nav class="md-nav md-nav--primary" data-md-level="0">
+  <label class="md-nav__title md-nav__title--site" for="__drawer">
+    <a href="https://github.fkinternal.com/Flipkart/nightswatch" title="Nightswatch Docs" class="md-nav__button md-logo">
+      
+        <i class="md-icon">stars</i>
+      
+    </a>
+    Nightswatch Docs
+  </label>
+  
+    <div class="md-nav__source">
+      
+
+
+  
+
+<a href="https://github.fkinternal.com/Flipkart/nightswatch" title="Go to repository" class="md-source" data-md-source="github">
+  
+    <div class="md-source__icon">
+      <svg viewBox="0 0 24 24" width="24" height="24">
+        <use xlink:href="#__github" width="24" height="24"></use>
+      </svg>
+    </div>
+  
+  <div class="md-source__repository">
+    nightswatch
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../introduction/" title="Introduction" class="md-nav__link">
+      Introduction
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../architecture/" title="Architecture" class="md-nav__link">
+      Architecture
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-3" type="checkbox" id="nav-3">
+    
+    <label class="md-nav__link" for="nav-3">
+      Onboarding
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-3">
+        Onboarding
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../onboarding/clientJarSeparation/" title="Client Jar Separation" class="md-nav__link">
+      Client Jar Separation
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../onboarding/handler/" title="Client API Details" class="md-nav__link">
+      Client API Details
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../onboarding/nightswatchRestIngestion/" title="Nightswatch Rest Ingestion" class="md-nav__link">
+      Nightswatch Rest Ingestion
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../onboarding/configsToBeProvided/" title="Configs to be provided" class="md-nav__link">
+      Configs to be provided
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../onboarding/alertAndMonitoring/" title="Alerts and Monitoring" class="md-nav__link">
+      Alerts and Monitoring
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../controllingTopology/" title="Controlling the Topology" class="md-nav__link">
+      Controlling the Topology
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active">
+    
+    <input class="md-toggle md-nav__toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+    
+    
+      <label class="md-nav__link md-nav__link--active" for="__toc">
+        Kafka Offset Manager
+      </label>
+    
+    <a href="./" title="Kafka Offset Manager" class="md-nav__link md-nav__link--active">
+      Kafka Offset Manager
+    </a>
+    
+      
+<nav class="md-nav md-nav--secondary">
+  
+  
+  
+    <label class="md-nav__title" for="__toc">Table of contents</label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#app-box-details" title="App Box Details" class="md-nav__link">
+    App Box Details
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#view-offsets-status" title="View Offsets status" class="md-nav__link">
+    View Offsets status
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#options" title="Options" class="md-nav__link">
+    Options
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#example-command" title="Example Command" class="md-nav__link">
+    Example Command
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#for-all-partitions" title="For All Partitions" class="md-nav__link">
+    For All Partitions
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#example-output" title="Example Output" class="md-nav__link">
+    Example Output
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#reset-offsets-to-a-datetime" title="Reset Offsets to a DateTime" class="md-nav__link">
+    Reset Offsets to a DateTime
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#options_1" title="Options" class="md-nav__link">
+    Options
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#example-command_1" title="Example Command" class="md-nav__link">
+    Example Command
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#output" title="Output" class="md-nav__link">
+    Output
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#shift-offsets-forward-or-reverse-by-an-integer" title="Shift Offsets forward or reverse by an integer" class="md-nav__link">
+    Shift Offsets forward or reverse by an integer
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#options_2" title="Options" class="md-nav__link">
+    Options
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#example-command_2" title="Example Command" class="md-nav__link">
+    Example Command
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#output_1" title="Output" class="md-nav__link">
+    Output
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+      
+      
+      
+      
+    </ul>
+  
+</nav>
+    
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../alerts/" title="Alerts" class="md-nav__link">
+      Alerts
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../nightswatchLocal/" title="Setup on Local" class="md-nav__link">
+      Setup on Local
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../debugging/" title="Debugging" class="md-nav__link">
+      Debugging
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../dashboards/" title="Dashboards" class="md-nav__link">
+      Dashboards
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../api/" title="API" class="md-nav__link">
+      API
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-11" type="checkbox" id="nav-11">
+    
+    <label class="md-nav__link" for="nav-11">
+      Dev Support
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-11">
+        Dev Support
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../dev-support/noah/noahSetup/" title="Noah Zookeeper Setup" class="md-nav__link">
+      Noah Zookeeper Setup
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-11-2" type="checkbox" id="nav-11-2">
+    
+    <label class="md-nav__link" for="nav-11-2">
+      Cluster Setup
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="2">
+      <label class="md-nav__title" for="nav-11-2">
+        Cluster Setup
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../dev-support/setup/yakSetup/" title="Yak Setup" class="md-nav__link">
+      Yak Setup
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../dev-support/setup/zookeeperSetup/" title="Zookeeper Setup" class="md-nav__link">
+      Zookeeper Setup
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../dev-support/setup/kafkaSetup/" title="Kafka Setup" class="md-nav__link">
+      Kafka Setup
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../dev-support/setup/kafkaLagMonitorSetup/" title="Kafka Lag Monitor Setup" class="md-nav__link">
+      Kafka Lag Monitor Setup
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-11-3" type="checkbox" id="nav-11-3">
+    
+    <label class="md-nav__link" for="nav-11-3">
+      Config Buckets
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="2">
+      <label class="md-nav__title" for="nav-11-3">
+        Config Buckets
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../configBucketsChennai/" title="Chennai" class="md-nav__link">
+      Chennai
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../configBucketsHyderabad/" title="Hyderabad" class="md-nav__link">
+      Hyderabad
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../deployment/" title="Deployment" class="md-nav__link">
+      Deployment
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../migration/" title="Storm Migration and RollBack" class="md-nav__link">
+      Storm Migration and RollBack
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-12" type="checkbox" id="nav-12">
+    
+    <label class="md-nav__link" for="nav-12">
+      Runbooks
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-12">
+        Runbooks
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../runbooks/stormRunbook/" title="Storm Runbooks" class="md-nav__link">
+      Storm Runbooks
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../runbooks/nightswatchRestRunbook/" title="Nightswatch Rest Runbooks" class="md-nav__link">
+      Nightswatch Rest Runbooks
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../runbooks/nightswatchDashboardRunbook/" title="Nightswatch Dashboard Runbooks" class="md-nav__link">
+      Nightswatch Dashboard Runbooks
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../runbooks/yakDNRunbook/" title="Yak Data Node RunBook" class="md-nav__link">
+      Yak Data Node RunBook
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../runbooks/zookeeperRunbook/" title="Zookeeper Runbooks" class="md-nav__link">
+      Zookeeper Runbooks
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../runbooks/hystrixMonitorRunbook/" title="Hystrix Monitor Runbooks" class="md-nav__link">
+      Hystrix Monitor Runbooks
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../runbooks/kafkaLagMonitorRunbook/" title="Kafka Lag Monitor Runbooks" class="md-nav__link">
+      Kafka Lag Monitor Runbooks
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../runbooks/kafkaLagRunbook/" title="Kafka Lag Runbooks" class="md-nav__link">
+      Kafka Lag Runbooks
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../runbooks/schedulerRunbook/" title="Scheduler Runbooks" class="md-nav__link">
+      Scheduler Runbooks
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../runbooks/yakRunbook/" title="Yak Runbooks" class="md-nav__link">
+      Yak Runbooks
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../runbooks/sidelineRunbook/" title="Sideline Runbook" class="md-nav__link">
+      Sideline Runbook
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../runbooks/boltsRunbook/" title="Bolts Runbook" class="md-nav__link">
+      Bolts Runbook
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../runbooks/externalServiceCallRunbook/" title="External Service Call Runbooks" class="md-nav__link">
+      External Service Call Runbooks
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../runbooks/sidelineGrowthRunbook/" title="Sideline Growth Runbooks" class="md-nav__link">
+      Sideline Growth Runbooks
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-13" type="checkbox" id="nav-13">
+    
+    <label class="md-nav__link" for="nav-13">
+      Maintainence
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-13">
+        Maintainence
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../runbooks/maintenance/stormMaintenance/" title="Storm" class="md-nav__link">
+      Storm
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../runbooks/maintenance/nwRestMaintenance/" title="Nightswatch Rest" class="md-nav__link">
+      Nightswatch Rest
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../runbooks/maintenance/nwDashboardMaintenance/" title="Nightswatch Dashboard" class="md-nav__link">
+      Nightswatch Dashboard
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../runbooks/maintenance/yakMaintenance/" title="Yak" class="md-nav__link">
+      Yak
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../runbooks/maintenance/zookeeperMaintenance/" title="Zookeeper" class="md-nav__link">
+      Zookeeper
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-14" type="checkbox" id="nav-14">
+    
+    <label class="md-nav__link" for="nav-14">
+      FAQ
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-14">
+        FAQ
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../faq/basicFaq/" title="Basic FAQ" class="md-nav__link">
+      Basic FAQ
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../faq/stormFaq/" title="Storm FAQ" class="md-nav__link">
+      Storm FAQ
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../faq/nightswatchFaq/" title="Nightswatch FAQ" class="md-nav__link">
+      Nightswatch FAQ
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../releaseNotes/" title="Release Notes" class="md-nav__link">
+      Release Notes
+    </a>
+  </li>
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="toc">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+<nav class="md-nav md-nav--secondary">
+  
+  
+  
+    <label class="md-nav__title" for="__toc">Table of contents</label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#app-box-details" title="App Box Details" class="md-nav__link">
+    App Box Details
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#view-offsets-status" title="View Offsets status" class="md-nav__link">
+    View Offsets status
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#options" title="Options" class="md-nav__link">
+    Options
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#example-command" title="Example Command" class="md-nav__link">
+    Example Command
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#for-all-partitions" title="For All Partitions" class="md-nav__link">
+    For All Partitions
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#example-output" title="Example Output" class="md-nav__link">
+    Example Output
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#reset-offsets-to-a-datetime" title="Reset Offsets to a DateTime" class="md-nav__link">
+    Reset Offsets to a DateTime
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#options_1" title="Options" class="md-nav__link">
+    Options
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#example-command_1" title="Example Command" class="md-nav__link">
+    Example Command
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#output" title="Output" class="md-nav__link">
+    Output
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#shift-offsets-forward-or-reverse-by-an-integer" title="Shift Offsets forward or reverse by an integer" class="md-nav__link">
+    Shift Offsets forward or reverse by an integer
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#options_2" title="Options" class="md-nav__link">
+    Options
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#example-command_2" title="Example Command" class="md-nav__link">
+    Example Command
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#output_1" title="Output" class="md-nav__link">
+    Output
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+      
+      
+      
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content">
+            <article class="md-content__inner md-typeset">
+              
+                
+                
+                  <h1>Kafka Offset Manager</h1>
+                
+                <h3 id="app-box-details">App Box Details<a class="headerlink" href="#app-box-details" title="Permanent link">&para;</a></h3>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Select the App Box from the instance group mentioned</p>
+<p><strong>Chennai App Box Instance Group:</strong> <a href="http://10.47.1.196/iaas/#/apps/prod-nightswatch/instanceGroups/storm-app-v3">storm-app-v3</a></p>
+<p><strong>Hyderabad App Box Instance Group:</strong> <a href="http://10.47.1.196/iaas/#/apps/prod-nightswatch/instanceGroups/storm-app">storm-app</a></p>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">Please raise a bastion request for non-sudo permissions for prod-nightswatch app-id</p>
+</div>
+<div class="admonition bug">
+<p class="admonition-title">Nightswatch Kafka Offset Manager supports only Kafka 2.x versions</p>
+</div>
+<h2 id="view-offsets-status">View Offsets status<a class="headerlink" href="#view-offsets-status" title="Permanent link">&para;</a></h2>
+<p><code>sudo /etc/init.d/fk-transact-nightswatch offset-manager (topology-name) (broker:port) (partition) describe</code></p>
+<h3 id="options">Options<a class="headerlink" href="#options" title="Permanent link">&para;</a></h3>
+<p>The options are described below:</p>
+<ul>
+<li>
+<p><strong>topology-name</strong>: Name of the topology. e.g. nw-preprod</p>
+</li>
+<li>
+<p><strong>broker:port</strong>: One of the broker ip:port of the kafka cluster belonging to the topology. e.g. 10.33.134.36:9092</p>
+</li>
+<li>
+<p><strong>partition</strong>: Partition for which offsets are to be migrated. Options are "all", partition-number </p>
+</li>
+<li>
+<p><strong>describe</strong>: This option describes the consumer group belonging the given topology.</p>
+</li>
+</ul>
+<h3 id="example-command">Example Command<a class="headerlink" href="#example-command" title="Permanent link">&para;</a></h3>
+<h4 id="for-all-partitions">For All Partitions<a class="headerlink" href="#for-all-partitions" title="Permanent link">&para;</a></h4>
+<p><code>sudo /etc/init.d/fk-transact-nightswatch offset-manager nw-preprod 10.33.134.36:9092 all describe</code></p>
+<h3 id="example-output">Example Output<a class="headerlink" href="#example-output" title="Permanent link">&para;</a></h3>
+<div class="codehilite"><pre><span></span>Consumer group &#39;nw-preprod-source_nw_preprod&#39; has no active members.
+
+TOPIC           PARTITION  CURRENT-OFFSET  LOG-END-OFFSET  LAG             CONSUMER-ID     HOST            CLIENT-ID
+yggrite-201-2   1          3               3               0               -               -               -
+yggrite-201-2   0          5               5               0               -               -               -
+yggrite-201-2   2          2               2               0               -               -               -
+</pre></div>
+
+
+<h2 id="reset-offsets-to-a-datetime">Reset Offsets to a DateTime<a class="headerlink" href="#reset-offsets-to-a-datetime" title="Permanent link">&para;</a></h2>
+<p><code>sudo /etc/init.d/fk-transact-nightswatch offset-manager (topology-name) (broker:port) (partition) datetime (date-time-value) test</code></p>
+<h3 id="options_1">Options<a class="headerlink" href="#options_1" title="Permanent link">&para;</a></h3>
+<p>The options are described below:</p>
+<ul>
+<li>
+<p><strong>topology-name</strong>: Name of the topology. e.g. nw-preprod</p>
+</li>
+<li>
+<p><strong>broker:port</strong>: One of the broker ip:port of the kafka cluster belonging to the topology. e.g. 10.33.134.36:9092</p>
+</li>
+<li>
+<p><strong>partition</strong>: Partition for which offsets are to be migrated. Options are "all", partition-number </p>
+</li>
+<li>
+<p><strong>datetime</strong>: This option migrates all the offsets to the date time mentioned in date-time-value.</p>
+</li>
+<li>
+<p><strong>date-time-value</strong>: Format is YYYY-MM-DDTHH:mm:SS.sss GMT</p>
+</li>
+<li>
+<p><strong>test</strong>: This is an optional flag. If present, it will only show the results instead of actually executing the commands on the kafka</p>
+</li>
+</ul>
+<h3 id="example-command_1">Example Command<a class="headerlink" href="#example-command_1" title="Permanent link">&para;</a></h3>
+<p><code>sudo /etc/init.d/fk-transact-nightswatch offset-manager nw-preprod 10.33.134.36:9092 all datetime 2020-08-07T11:30:00.000</code></p>
+<h3 id="output">Output<a class="headerlink" href="#output" title="Permanent link">&para;</a></h3>
+<div class="codehilite"><pre><span></span>TOPIC                          PARTITION  NEW-OFFSET
+yggrite-201-2                  2          1
+yggrite-201-2                  1          2
+yggrite-201-2                  0          1
+</pre></div>
+
+
+<h2 id="shift-offsets-forward-or-reverse-by-an-integer">Shift Offsets forward or reverse by an integer<a class="headerlink" href="#shift-offsets-forward-or-reverse-by-an-integer" title="Permanent link">&para;</a></h2>
+<p><code>sudo /etc/init.d/fk-transact-nightswatch offset-manager (topology-name) (broker:port) (partition) relative (offset-shift) test</code></p>
+<h3 id="options_2">Options<a class="headerlink" href="#options_2" title="Permanent link">&para;</a></h3>
+<p>The options are described below:</p>
+<ul>
+<li>
+<p><strong>topology-name</strong>: Name of the topology. e.g. nw-preprod</p>
+</li>
+<li>
+<p><strong>broker:port</strong>: One of the broker ip:port of the kafka cluster belonging to the topology. e.g. 10.33.134.36:9092</p>
+</li>
+<li>
+<p><strong>partition</strong>: Partition for which offsets are to be migrated. Options are "all", partition-number </p>
+</li>
+<li>
+<p><strong>relative</strong>: This option shifts the offsets forward or reverse by the given integer.</p>
+</li>
+<li>
+<p><strong>offset-shift</strong>: +ve if you want to increase offsets and -ve if you want to decrease the offsets. This is limited by EARLIEST_OFFSET and LATEST_OFFSET.</p>
+</li>
+<li>
+<p><strong>test</strong>: This is an optional flag. If present, it will only show the results instead of actually executing the commands on the kafka</p>
+</li>
+<li>
+<p><strong>kafka-topic:partition</strong>: This is an optional flag. If Offsets are required to be migrated for only 1 partition, then this is to be used. e.g. nw-preprod:0</p>
+</li>
+</ul>
+<h3 id="example-command_2">Example Command<a class="headerlink" href="#example-command_2" title="Permanent link">&para;</a></h3>
+<p><code>sudo /etc/init.d/fk-transact-nightswatch offset-manager nw-preprod 10.33.134.36:9092 0 relative 10</code></p>
+<h3 id="output_1">Output<a class="headerlink" href="#output_1" title="Permanent link">&para;</a></h3>
+<div class="codehilite"><pre><span></span>TOPIC                          PARTITION  NEW-OFFSET
+yggrite-201-2                  0          11
+</pre></div>
+
+
+<div class="admonition bug">
+<p class="admonition-title">In case of any issues or help please contact id-dev@flipkart.com</p>
+</div>
+                
+                  
+                
+              
+              
+                
+
+
+              
+            </article>
+          </div>
+        </div>
+      </main>
+      
+        
+<footer class="md-footer">
+  
+    <div class="md-footer-nav">
+      <nav class="md-footer-nav__inner md-grid">
+        
+          <a href="../controllingTopology/" title="Controlling the Topology" class="md-flex md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+            <div class="md-flex__cell md-flex__cell--shrink">
+              <i class="md-icon md-icon--arrow-back md-footer-nav__button"></i>
+            </div>
+            <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
+              <span class="md-flex__ellipsis">
+                <span class="md-footer-nav__direction">
+                  Previous
+                </span>
+                Controlling the Topology
+              </span>
+            </div>
+          </a>
+        
+        
+          <a href="../alerts/" title="Alerts" class="md-flex md-footer-nav__link md-footer-nav__link--next" rel="next">
+            <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
+              <span class="md-flex__ellipsis">
+                <span class="md-footer-nav__direction">
+                  Next
+                </span>
+                Alerts
+              </span>
+            </div>
+            <div class="md-flex__cell md-flex__cell--shrink">
+              <i class="md-icon md-icon--arrow-forward md-footer-nav__button"></i>
+            </div>
+          </a>
+        
+      </nav>
+    </div>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-footer-copyright">
+        
+          <div class="md-footer-copyright__highlight">
+            Copyright &copy; 2020 Nightswatch
+          </div>
+        
+        powered by
+        <a href="https://www.mkdocs.org">MkDocs</a>
+        and
+        <a href="https://squidfunk.github.io/mkdocs-material/">
+          Material for MkDocs</a>
+      </div>
+      
+  <div class="md-footer-social">
+    <link rel="stylesheet" href="../assets/fonts/font-awesome.css">
+    
+      <a href="https://github.fkinternal.com/Flipkart/nightswatch" class="md-footer-social__link fa fa-github"></a>
+    
+      <a href="https://twitter.com/Flipkart" class="md-footer-social__link fa fa-twitter"></a>
+    
+      <a href="https://www.linkedin.com/company/flipkart/" class="md-footer-social__link fa fa-linkedin"></a>
+    
+  </div>
+
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    
+      <script src="../assets/javascripts/application.d9aa80ab.js"></script>
+      
+      <script>app.initialize({version:"1.0.4",url:{base:".."}})</script>
+      
+    
+  </body>
+</html>

@@ -1,0 +1,22 @@
+{
+  "instance_group_name": "",
+  "type": "zookeeper",
+  "app_name": "prod-nightswatch-zookeeper",
+  "store_info": {
+    "backup_from_instance_id": 1967758,
+    "dir_path": "",
+    "lvol": "",
+    "zookeeper": {
+      "zoo_cfg_path": "/etc/zookeeper/conf/zoo.cfg",
+      "max_snaps": 3
+    }
+  },
+  "disaster_recovery": true,
+  "backup": {
+    "slot": "15:25",
+    "rpo": 6,
+    "full_backup_frequency": 8,
+    "encryption": false,
+    "compression": true
+  }
+}
